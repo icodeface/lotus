@@ -228,7 +228,7 @@ func Online() Option {
 			Override(new(dtypes.DrandBootstrap), modules.DrandBootstrap),
 			Override(new(dtypes.DrandConfig), modules.BuiltinDrandConfig),
 
-			Override(HandleIncomingMessagesKey, modules.HandleIncomingMessages),
+			//Override(HandleIncomingMessagesKey, modules.HandleIncomingMessages),
 
 			Override(new(ffiwrapper.Verifier), ffiwrapper.ProofVerifier),
 			Override(new(vm.SyscallBuilder), vm.Syscalls),
