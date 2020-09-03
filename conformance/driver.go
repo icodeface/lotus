@@ -83,6 +83,10 @@ func (d *Driver) ExecuteTipset(bs blockstore.Blockstore, ds ds.Batching, preroot
 				sb.SecpkMessages = append(sb.SecpkMessages, msg)
 			case address.BLS:
 				sb.BlsMessages = append(sb.BlsMessages, msg)
+			case address.Actor:
+				// sneak in messages originating from actor addresses as both kinds.
+				sb.SecpkMessages = append(sb.SecpkMessages, msg)
+				sb.BlsMessages = append(sb.BlsMessages, msg)
 			default:
 				return nil, fmt.Errorf("from account is not secpk nor bls: %s", msg.From)
 			}
