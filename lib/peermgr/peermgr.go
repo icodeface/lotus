@@ -129,6 +129,7 @@ func (pmgr *PeerMgr) Run(ctx context.Context) {
 		select {
 		case <-tick.C:
 			pcount := pmgr.getPeerCount()
+			log.Debugf("current peer count: %d", pcount)
 			if pcount < pmgr.minFilPeers {
 				pmgr.expandPeers()
 			} else if pcount > pmgr.maxFilPeers {
@@ -166,20 +167,18 @@ func (pmgr *PeerMgr) expandPeers() {
 }
 
 func (pmgr *PeerMgr) doExpand(ctx context.Context) {
+	log.Debugf("do expand")
 	pcount := pmgr.getPeerCount()
-	if pcount == 0 {
-		if len(pmgr.bootstrappers) == 0 {
-			log.Warn("no peers connected, and no bootstrappers configured")
-			return
-		}
-
-		log.Info("connecting to bootstrap peers")
-		for _, bsp := range pmgr.bootstrappers {
-			if err := pmgr.h.Connect(ctx, bsp); err != nil {
-				log.Warnf("failed to connect to bootstrap peer: %s", err)
-			}
-		}
+	if pcount == 0 && len(pmgr.bootstrappers) == 0 {
+		log.Warn("no peers connected, and no bootstrappers configured")
 		return
+	}
+
+	log.Info("connecting to bootstrap peers")
+	for _, bsp := range pmgr.bootstrappers {
+		if err := pmgr.h.Connect(ctx, bsp); err != nil {
+			log.Warnf("failed to connect to bootstrap peer: %s", err)
+		}
 	}
 
 	// if we already have some peers and need more, the dht is really good at connecting to most peers. Use that for now until something better comes along.
