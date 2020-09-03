@@ -50,7 +50,7 @@ var RepublishInterval = pubsub.TimeCacheDuration + time.Duration(5*build.BlockDe
 
 var minimumBaseFee = types.NewInt(uint64(build.MinimumBaseFee))
 
-var MaxActorPendingMessages = 1000
+var MaxActorPendingMessages = 5000
 
 var (
 	ErrMessageTooBig = errors.New("message too big")
