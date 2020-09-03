@@ -1874,7 +1874,7 @@ Response:
 ### MsigCreate
 MsigCreate creates a multisig wallet
 It takes the following params: <required number of senders>, <approving addresses>, <unlock duration>
-<initial balance>, <sender address of the create msg>, <gas price>
+<vesting start epoch>, <initial balance>, <sender address of the create msg>
 
 
 Perms: sign
@@ -1885,9 +1885,9 @@ Inputs:
   42,
   null,
   10101,
+  10101,
   "0",
-  "t01234",
-  "0"
+  "t01234"
 ]
 ```
 
@@ -2309,7 +2309,7 @@ Inputs:
     "Extra": {
       "Actor": "t01234",
       "Method": 1,
-      "Data": "Ynl0ZSBhcnJheQ=="
+      "Params": "Ynl0ZSBhcnJheQ=="
     },
     "Lane": 42,
     "Nonce": 42,
@@ -2345,7 +2345,7 @@ Inputs:
     "Extra": {
       "Actor": "t01234",
       "Method": 1,
-      "Data": "Ynl0ZSBhcnJheQ=="
+      "Params": "Ynl0ZSBhcnJheQ=="
     },
     "Lane": 42,
     "Nonce": 42,
@@ -2381,7 +2381,7 @@ Inputs:
     "Extra": {
       "Actor": "t01234",
       "Method": 1,
-      "Data": "Ynl0ZSBhcnJheQ=="
+      "Params": "Ynl0ZSBhcnJheQ=="
     },
     "Lane": 42,
     "Nonce": 42,
@@ -2422,7 +2422,7 @@ Response:
   "Extra": {
     "Actor": "t01234",
     "Method": 1,
-    "Data": "Ynl0ZSBhcnJheQ=="
+    "Params": "Ynl0ZSBhcnJheQ=="
   },
   "Lane": 42,
   "Nonce": 42,
@@ -2467,7 +2467,7 @@ Inputs:
     "Extra": {
       "Actor": "t01234",
       "Method": 1,
-      "Data": "Ynl0ZSBhcnJheQ=="
+      "Params": "Ynl0ZSBhcnJheQ=="
     },
     "Lane": 42,
     "Nonce": 42,
@@ -3207,7 +3207,8 @@ Response:
   "Multiaddrs": null,
   "SealProofType": 3,
   "SectorSize": 34359738368,
-  "WindowPoStPartitionSectors": 42
+  "WindowPoStPartitionSectors": 42,
+  "ConsensusFaultElapsed": 10101
 }
 ```
 
@@ -3684,7 +3685,9 @@ Response:
   "VerifiedDealWeight": "0",
   "InitialPledge": "0",
   "ExpectedDayReward": "0",
-  "ExpectedStoragePledge": "0"
+  "ExpectedStoragePledge": "0",
+  "ReplacedSectorAge": 10101,
+  "ReplacedDayReward": "0"
 }
 ```
 
